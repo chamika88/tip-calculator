@@ -29,6 +29,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tipPercentValue()
+        
+        tipsyTitleVie.layer.shadowColor = UIColor.blackColor().CGColor
+        tipsyTitleVie.layer.shadowOpacity = 1
+        tipsyTitleVie.layer.shadowOffset = CGSizeZero
+        tipsyTitleVie.layer.shadowRadius = 10
+        
+        billAmountTextField.layer.cornerRadius = 5.0
        
     }
     
