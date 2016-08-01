@@ -37,11 +37,16 @@ class TipCalc {
     }
     
     var totalAmount: Double {
+        
         return _totalAmount
     }
     
     var numberOfPeople: Int {
+        get {
         return _numberOfPeople
+        } set {
+            _numberOfPeople = newValue
+        }
     }
     
     var splitAmount: Double {
@@ -61,6 +66,6 @@ class TipCalc {
     }
     
     func split() {
-        _splitAmount = _billAmount / Double(_numberOfPeople)
+        _splitAmount = _totalAmount / Double(_numberOfPeople)
     }
 }

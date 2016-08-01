@@ -19,6 +19,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipAmountLbl: UILabel!
     @IBOutlet weak var totalAmountLbl: UILabel!
     
+    @IBOutlet weak var noOfPeopleSlider: UISlider!
+    @IBOutlet weak var splitLbl: UILabel!
+    @IBOutlet weak var splitAmount: UILabel!
+    
     //Mark: - Properties
     var tipsyCal = TipCalc(billAmount: 0.0, tipPercent: 0.0)
 
@@ -39,6 +43,11 @@ class ViewController: UIViewController {
         calcTip()
     }
     
+    @IBAction func noOfPeopleChange(sender: AnyObject) {
+        splitValue()
+        calcEachAmount()
+        updateUI()
+    }
     //Mark: - functions
     
     func calcTip() {
@@ -48,13 +57,25 @@ class ViewController: UIViewController {
         updateUI()
     }
     
+    func calcEachAmount() {
+        tipsyCal.numberOfPeople = Int(noOfPeopleSlider.value)
+        //tipsyCal.billAmount = ((billAmountTextField.text)! as NSString).doubleValue
+        tipsyCal.calculateTip()
+       tipsyCal.split()
+    }
+    
     func updateUI() {
         tipAmountLbl.text = String(format: "$%0.2f", tipsyCal.tipAmount)
         totalAmountLbl.text = String(format: "$%0.2f",tipsyCal.totalAmount)
+        splitAmount.text = String(format:  "$%0.2f", tipsyCal.splitAmount)
     }
     
     func tipPercentValue() {
         tipPresentLbl.text = "Tip: \(Int(tipPercentSlider.value * 100))%"
+    }
+    
+    func splitValue() {
+        splitLbl.text = "SPLIT: \(Int(noOfPeopleSlider.value))"
     }
  
 
